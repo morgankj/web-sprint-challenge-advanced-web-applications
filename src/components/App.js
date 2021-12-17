@@ -5,16 +5,32 @@ import styled from 'styled-components';
 import Header from './Header';
 import BloomHeader from './BloomHeader';
 import Login from './Login';
+import View from './View';
+import Logout from './Logout';
 
 const App = () => {
   return (
     <AppContainer>
       <BloomHeader/>
       <Header/>
+      
       <RouteContainer>
+        <Route exact path="/logout">
+          <Logout/>
+        </Route>
+
+        <Route exact path="/view">
+          <View/>
+        </Route>
+
+        <Route exact path="/login">
+          <Login/>
+        </Route>
+
         <Route exact path="/">
           <Login/>
-        </Route>          
+        </Route>
+      
       </RouteContainer>
     </AppContainer>
   )
