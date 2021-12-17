@@ -26,6 +26,7 @@ const Login = () => {
                 localStorage.setItem("token", token);
                 localStorage.setItem("role", role);
                 localStorage.setItem("username", username);
+                useHistory.push('/view');
             })
             .catch(err => {
                 setLoginInfo({

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -10,9 +11,14 @@ const View = (props) => {
     const [editId, setEditId] = useState();
 
     const handleDelete = (id) => {
+        axios.delete(`http://localhost:5000/api/articles/${id}`)
+            .then(res => {
+                setArticles(res.data);
+            })
     }
 
     const handleEdit = (article) => {
+        
     }
 
     const handleEditSelect = (id)=> {
