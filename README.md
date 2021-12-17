@@ -21,19 +21,19 @@ In this challenge you will create a login page and request a token from the serv
 In this project, you will demonstrate your mastery of these skills by creating **a login page** and **basic CRUD application.** You will implement basic security using **token authentication** and build private routes within the application.
 
 ### API Documentation
-* **[POST]** * to `http://localhost:5000/api/login`: returns authentication information of the current user. Pass in the following credentials as the `body` of the request: `{ username: 'Lambda', password: 'School' }` for a successful login.
+* **[POST]** * to `http://localhost:5003/api/login`: returns authentication information of the current user. Pass in the following credentials as the `body` of the request: `{ username: 'Lambda', password: 'School' }` for a successful login.
 
-* **[POST]** * to `http://localhost:5000/api/logout`: returns the expired authentication information of the user.
+* **[POST]** * to `http://localhost:5003/api/logout`: returns the expired authentication information of the user.
 
-* **[GET]** to `http://localhost:5000/api/articles`: returns the all articles currently available. **This endpoint can only be accessed by an authenticated user.**
+* **[GET]** to `http://localhost:5003/api/articles`: returns the all articles currently available. **This endpoint can only be accessed by an authenticated user.**
 
-* **[GET]** to `http://localhost:5000/api/articles/:id`: returns a single article with the id. **This endpoint can only be accessed by an authenticated user.**
+* **[GET]** to `http://localhost:5003/api/articles/:id`: returns a single article with the id. **This endpoint can only be accessed by an authenticated user.**
 
-* **[POST]** to `http://localhost:5000/api/articles`: creates a article object. Returns all available articles. Pass the article as the `body` of the request. **This endpoint can only be accessed by an authenticated user.**
+* **[POST]** to `http://localhost:5003/api/articles`: creates a article object. Returns all available articles. Pass the article as the `body` of the request. **This endpoint can only be accessed by an authenticated user.**
 
-* **[PUT]** to `http://localhost:5000/api/articles/:id`: updates the article using the `id` passed as part of the URL. Returns all available articles. Send the updated article object as the `body` of the request. **This endpoint can only be accessed by an authenticated user.**
+* **[PUT]** to `http://localhost:5003/api/articles/:id`: updates the article using the `id` passed as part of the URL. Returns all available articles. Send the updated article object as the `body` of the request. **This endpoint can only be accessed by an authenticated user.**
 
-* **[DELETE]** to `http://localhost:5000/api/articles/:id`: removes the article with the `id` referenced. Returns all available articles. **This endpoint can only be accessed by an authenticated user.**
+* **[DELETE]** to `http://localhost:5003/api/articles/:id`: removes the article with the `id` referenced. Returns all available articles. **This endpoint can only be accessed by an authenticated user.**
 
 #### Article Data Structure
 ```
@@ -82,19 +82,19 @@ In this project, you will demonstrate your mastery of these skills by creating *
 
 * [X] `editId` is passed into the `EditForm` component. In `EditForm.js`, make a http request on mount to get the article with the id `editId`. Save the result in state.
 
-* [ ] In `View.js`, complete `handleEdit` so that a http request is made that updates the passed in article. Set the editing state to false when the request is complete. After successfully deleting the article on the api, update local state to reflect these changes.
+* [X] In `View.js`, complete `handleEdit` so that a http request is made that updates the passed in article. Set the editing state to false when the request is complete. After successfully deleting the article on the api, update local state to reflect these changes.
 
 
 ### Logout Authentication
 > *Add in the http requests needed to logout of the application.*
 
-* [ ] In `Logout.js`, execute a http request to logout on mount. When the request is complete, the user's security token should be removed and the browser should redirect to the login page.
+* [X] In `Logout.js`, execute a http request to logout on mount. When the request is complete, the user's security token should be removed and the browser should redirect to the login page.
 
 ### Advanced Testing
 > *Add the following tests within Article.test.js.*
 * [ ] Build a test that shows the `Article` component, given the correct props, can render without errors.
 * [ ] Build a test that shows that when a correctly formatted article is passed into the `Article` component, the correct headline, author, summary and body are displayed.
-* [ ] The `Article` component should display "Associated Press" when an author attribute is not avalible. Build a test that verifies that that is true.
+* [ ] The `Article` component should display "Associated Press" when an author attribute is not available. Build a test that verifies that that is true.
 * [ ] Build a test that show that when the deleteButton is pressed on an Article, the handleDelete functional property is executed.
 
 ## Important Notes:

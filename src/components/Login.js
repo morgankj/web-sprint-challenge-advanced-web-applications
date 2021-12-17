@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import axios from 'axios';
 
 const Login = () => {
+    const { push } = useHistory();
+
     const [loginInfo, setLoginInfo] = useState({
         username: '',
         password: '',
@@ -26,9 +28,10 @@ const Login = () => {
                 localStorage.setItem("token", token);
                 localStorage.setItem("role", role);
                 localStorage.setItem("username", username);
-                useHistory.push('/view');
+                push('/view');
             })
             .catch(err => {
+                console.log(err);
                 setLoginInfo({
                     ...loginInfo,
                     error: err.response.data.error

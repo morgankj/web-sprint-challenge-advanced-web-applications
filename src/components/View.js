@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Article from './Article';
@@ -10,15 +10,28 @@ const View = (props) => {
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 
+    // useEffect(() => {
+    //     axios(`http://localhost:5003/api/articles`)
+    //         .then(res => {
+    //             console.log(res);
+    //         })
+    //         .catch(err => console.error(err));
+    // }, [])
+
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5000/api/articles/${id}`)
+        axios.delete(`http://localhost:5003/api/articles/${id}`)
             .then(res => {
                 setArticles(res.data);
             })
     }
 
     const handleEdit = (article) => {
-        
+        axios.put(`http://localhost:5003/api/articles/${id}`, article)
+            .then(res => {
+                setArticles(res.data);
+                setEditing(false);
+            })
+            .catch(err => console.error(err));
     }
 
     const handleEditSelect = (id)=> {
@@ -30,7 +43,9 @@ const View = (props) => {
         setEditing(false);
     }
 
-    return(<ComponentContainer>
+    return(
+    console.log(articles),
+    <ComponentContainer>
         <HeaderContainer>View Articles</HeaderContainer>
         <ContentContainer flexDirection="row">
             <ArticleContainer>
