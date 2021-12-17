@@ -1,12 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
+import axios from 'axios';
 
 const Login = () => {
+    const [loginInfo, setLoginInfo] = useState({
+        username: '',
+        password: '',
+        error: null
+    });
+
+    const handleChange = (event) => {
+        setLoginInfo({
+            ...loginInfo,
+            [event.target.name]: event.target.value
+        });
+    }
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        axios.post(`http://localhost:5000/api/login`, { username: 'Lambda', password: 'School' })
+            .then(res => {
+                console.log(res);
+                const { token, role, username } = res.data;
+                localStorage.setItem("token", token);
+                localStorage.setItem("role", role);
+                localStorage.setItem("username", username);
+            })
+            .catch(err => {
+                console.error(err.response.data);
+            });
+    }
     
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
+            <form onSubmit={onSubmit}>
+                <label>Username&nbsp;
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        placeholder="username"
+                        value={loginInfo.username}
+                        onChange={handleChange}
+                    />
+                </label>
+                <label>Password&nbsp;
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="password"
+                        value={loginInfo.password}
+                        onChange={handleChange}
+                    />
+                </label>
+                { loginInfo.error ? <p>Login Error: {loginInfo.error}</p> : null }
+                <button id="submit">SUBMIT</button>
+            </form>
         </ModalContainer>
     </ComponentContainer>);
 }
