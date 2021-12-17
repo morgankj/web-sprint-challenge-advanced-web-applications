@@ -20,49 +20,52 @@ const Login = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        axios.post(`http://localhost:5000/api/login`, { username: 'Lambda', password: 'School' })
+        axios.post(`http://localhost:5003/api/login`, loginInfo)
             .then(res => {
-                console.log(res);
                 const { token, role, username } = res.data;
                 localStorage.setItem("token", token);
                 localStorage.setItem("role", role);
                 localStorage.setItem("username", username);
             })
             .catch(err => {
-                console.error(err.response.data);
+                setLoginInfo({
+                    ...loginInfo,
+                    error: err.response.data.error
+                })
             });
     }
     
-    return(<ComponentContainer>
-        <ModalContainer>
-            <h1>Welcome to Blogger Pro</h1>
-            <h2>Please enter your account information.</h2>
-            <form onSubmit={onSubmit}>
-                <label>Username&nbsp;
-                    <input
-                        id="username"
-                        type="text"
-                        name="username"
-                        placeholder="username"
-                        value={loginInfo.username}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>Password&nbsp;
-                    <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        value={loginInfo.password}
-                        onChange={handleChange}
-                    />
-                </label>
-                { loginInfo.error ? <p>Login Error: {loginInfo.error}</p> : null }
-                <button id="submit">SUBMIT</button>
-            </form>
-        </ModalContainer>
-    </ComponentContainer>);
+    return(
+        <ComponentContainer>
+            <ModalContainer>
+                <h1>Welcome to Blogger Pro</h1>
+                <h2>Please enter your account information.</h2>
+                <form onSubmit={onSubmit}>
+                    <label>Username&nbsp;
+                        <input
+                            id="username"
+                            type="text"
+                            name="username"
+                            placeholder="username"
+                            value={loginInfo.username}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>Password&nbsp;
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            value={loginInfo.password}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <button id="submit">SUBMIT</button>
+                </form>
+                <p id="error"> { loginInfo.error ? "Login Error: " + loginInfo.error : null } </p>
+            </ModalContainer>
+        </ComponentContainer>);
 }
 
 export default Login;
