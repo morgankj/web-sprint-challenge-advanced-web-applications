@@ -2,7 +2,6 @@ import React from 'react';
 import '@testing-library/jest-dom';
 
 import userEvent from '@testing-library/user-event';
-import MutationObserver from 'mutationobserver-shim';
 
 import Article from './Article';
 
@@ -21,7 +20,7 @@ const testData = {
 const testData2 = {
     id: "67890",
     headline: "This is a headline2",
-    createdOn: "2021-12-13T14:20:13-06:00",
+    createdOn: "2021-12-13T14:31:13-06:00",
     author: "",
     image: 134,
     summary: "Here is a summary for the article 2",

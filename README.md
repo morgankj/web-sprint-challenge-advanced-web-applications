@@ -95,7 +95,7 @@ In this project, you will demonstrate your mastery of these skills by creating *
 * [X] Build a test that shows the `Article` component, given the correct props, can render without errors.
 * [X] Build a test that shows that when a correctly formatted article is passed into the `Article` component, the correct headline, author, summary and body are displayed.
 * [X] The `Article` component should display "Associated Press" when an author attribute is not available. Build a test that verifies that that is true.
-* [ ] Build a test that show that when the deleteButton is pressed on an Article, the handleDelete functional property is executed.
+* [X] Build a test that show that when the deleteButton is pressed on an Article, the handleDelete functional property is executed.
 
 ## Important Notes:
 * You are welcome to create additional files but **do not move or rename existing files** or folders.
@@ -115,9 +115,18 @@ In this project, you will demonstrate your mastery of these skills by creating *
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. Add your answers below.
 
 1. Explain what a token is used for.
+- A token is used to verify that the api call went through and returned data correctly - in this case specifically, the token on local storage confirms that the user logged in successfully. It is commonly used as a security precaution to limit functionality or visibility of assets on a site.
 
 2. What steps can you take in your web apps to keep your data secure?
+- You can create confidential files (in our lessons, we put them in a Constants folder > index.js) and list them in your .gitignore file
+- You can use Private Routes or tokens to limit visibility of content
 
 3. Describe how web servers work.
+- The internet is tubes! (Warren forced us to watch this, lol)
+- Web servers are computers that run/host websites - they store, process, and return data to be displayed to users. This is done at a rapid pace and massive scale, accomplished through HTTP
 
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+- CREATE: post - inserts data
+- READ: get - reads data
+- UPDATE: put (or patch if you're old-school) - update data (or insert if you use a new ID, which would be more CREATE)
+- DELETE: delete - deletes data
