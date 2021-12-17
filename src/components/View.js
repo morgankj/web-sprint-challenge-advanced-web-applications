@@ -4,29 +4,30 @@ import styled from 'styled-components';
 
 import Article from './Article';
 import EditForm from './EditForm';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const View = (props) => {
     const [articles, setArticles] = useState([]);
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 
-    // useEffect(() => {
-    //     axios(`http://localhost:5003/api/articles`)
-    //         .then(res => {
-    //             console.log(res);
-    //         })
-    //         .catch(err => console.error(err));
-    // }, [])
+    useEffect(() => {
+        axiosWithAuth().get(`/articles`)
+            .then(res => {
+                setArticles(res.data);
+            })
+            .catch(err => console.error(err));
+    }, [])
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5003/api/articles/${id}`)
+        axiosWithAuth().delete(`/articles/${id}`)
             .then(res => {
                 setArticles(res.data);
             })
     }
 
     const handleEdit = (article) => {
-        axios.put(`http://localhost:5003/api/articles/${id}`, article)
+        axiosWithAuth().put(`/articles/${editId}`, article)
             .then(res => {
                 setArticles(res.data);
                 setEditing(false);
@@ -44,7 +45,6 @@ const View = (props) => {
     }
 
     return(
-    console.log(articles),
     <ComponentContainer>
         <HeaderContainer>View Articles</HeaderContainer>
         <ContentContainer flexDirection="row">

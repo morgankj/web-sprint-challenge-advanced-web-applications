@@ -31,7 +31,6 @@ const Login = () => {
                 push('/view');
             })
             .catch(err => {
-                console.log(err);
                 setLoginInfo({
                     ...loginInfo,
                     error: err.response.data.error
